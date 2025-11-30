@@ -1,8 +1,15 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import PageHeader from "@/components/sections/PageHeader";
+import ReferencesSection from "@/components/sections/ReferencesSection";
 import CTABanner from "@/components/sections/CTABanner";
 import {
+  Shield,
+  Warehouse,
+  Building,
+  Home,
+  Wind,
+  Snowflake,
   Flame,
   Droplets,
   Search,
@@ -20,6 +27,101 @@ export const metadata: Metadata = {
 };
 
 const services = [
+  // YENİ HİZMETLER (KARTVIZITTEKI SIRA - ÜSTTE)
+  {
+    icon: Shield,
+    title: "Yangın Sprink Sistemleri",
+    description:
+      "Yangın sprinkler sistemleri, yangın anında otomatik olarak devreye girerek can ve mal güvenliğini sağlar. TSE ve uluslararası standartlara uygun kurulum yapıyoruz. Endüstriyel tesisler, alışveriş merkezleri, oteller ve yüksek binalar için profesyonel çözümler sunuyoruz. Periyodik bakım ve test hizmetleri ile sisteminizin her zaman çalışır durumda olmasını garantiliyoruz.",
+    features: [
+      "Wet pipe sistem kurulumu",
+      "Dry pipe sistem kurulumu",
+      "Periyodik bakım ve test",
+      "TSE standartlarına uygun montaj",
+      "Yangın pompa sistemleri",
+    ],
+    price: "Proje bazlı fiyatlandırma",
+    index: 1,
+  },
+  {
+    icon: Warehouse,
+    title: "Kazan Dairesi",
+    description:
+      "Merkezi ısıtma sistemlerinin kalbi olan kazan dairelerinin kurulumu, bakımı ve modernizasyonu konusunda uzmanız. Doğalgaz, fuel-oil ve katı yakıtlı kazan sistemleri için komple çözümler sunuyoruz. Enerji verimliliği yüksek, çevre dostu sistemler kurarak yakıt tasarrufu sağlıyoruz.",
+    features: [
+      "Kazan montajı ve devreye alma",
+      "Brülör bakım ve onarım",
+      "Baca sistemleri",
+      "Pompa grupları",
+      "Genleşme tankları",
+      "Otomatik kontrol sistemleri",
+    ],
+    price: "₺10.000'den itibaren",
+    index: 2,
+  },
+  {
+    icon: Building,
+    title: "Kaskat Kazan Sistemleri",
+    description:
+      "Kaskat sistemler, birden fazla kazanın paralel çalışması ile yüksek verimli ısıtma sağlar. Büyük binalar, siteler, hastaneler ve fabrikalar için ideal çözümdür. Modüler yapısı sayesinde ihtiyaca göre kapasite artırılabilir ve enerji tasarrufu sağlanır.",
+    features: [
+      "Modüler kazan sistemleri",
+      "Akıllı kontrol panelleri",
+      "Yüksek verimli kondensasyon",
+      "Uzaktan izleme sistemleri",
+      "Enerji tasarrufu optimizasyonu",
+    ],
+    price: "₺25.000'den itibaren",
+    index: 3,
+  },
+  {
+    icon: Home,
+    title: "Daire Tesisatı",
+    description:
+      "Konut ve apartman dairelerinde su tesisatı kurulumu ve yenileme işleri yapıyoruz. PPR, bakır ve kompozit boru sistemleri ile uzun ömürlü, sızdırmaz tesisatlar kuruyoruz. Yeni bina projelerinden tadilata kadar tüm daire tesisatı ihtiyaçlarınızda yanınızdayız.",
+    features: [
+      "Temiz su tesisatı",
+      "Pis su tesisatı",
+      "Mutfak ve banyo tesisatı",
+      "Tesisat yenileme",
+      "Sızdırmazlık testi",
+    ],
+    price: "₺3.000'den itibaren",
+    index: 4,
+  },
+  {
+    icon: Wind,
+    title: "Isıtma & Soğutma Sistemleri",
+    description:
+      "Konut, işyeri ve endüstriyel tesisler için ısıtma ve soğutma sistemleri kurulum ve bakım hizmetleri sunuyoruz. Merkezi ısıtma, VRF/VRV sistemleri, split klima, fancoil üniteleri ve yerden ısıtma sistemleri konusunda uzmanız.",
+    features: [
+      "Merkezi ısıtma sistemleri",
+      "Split ve multi split klima",
+      "VRF/VRV sistemleri",
+      "Fancoil üniteleri",
+      "Yerden ısıtma",
+      "Havalandırma sistemleri",
+    ],
+    price: "₺5.000'den itibaren",
+    index: 5,
+  },
+  {
+    icon: Snowflake,
+    title: "Çiller Gruplama",
+    description:
+      "Endüstriyel soğutma ihtiyaçları için çiller sistemleri kurulumu ve bakımı yapıyoruz. Fabrikalar, üretim tesisleri, hastaneler ve büyük binalar için profesyonel soğutma çözümleri sunuyoruz. Su soğutmalı ve hava soğutmalı çiller sistemlerinde uzmanız.",
+    features: [
+      "Su soğutmalı çiller",
+      "Hava soğutmalı çiller",
+      "Çiller bakım ve onarım",
+      "Soğutma kulesi sistemleri",
+      "Proses soğutma",
+      "Enerji optimizasyonu",
+    ],
+    price: "Proje bazlı fiyatlandırma",
+    index: 6,
+  },
+  // MEVCUT HİZMETLER (ALTTA KALACAK)
   {
     icon: Flame,
     title: "Kombi Montajı & Bakımı",
@@ -33,7 +135,7 @@ const services = [
       "Orijinal yedek parça kullanımı",
     ],
     price: "₺3.500'den itibaren",
-    index: 1,
+    index: 7,
   },
   {
     icon: Droplets,
@@ -48,7 +150,7 @@ const services = [
       "Temiz ve özenli çalışma",
     ],
     price: "₺2.000'den itibaren",
-    index: 2,
+    index: 8,
   },
   {
     icon: Search,
@@ -63,7 +165,7 @@ const services = [
       "Tespit sonrası onarım hizmeti",
     ],
     price: "₺800'den itibaren",
-    index: 3,
+    index: 9,
   },
   {
     icon: Thermometer,
@@ -78,7 +180,7 @@ const services = [
       "Temizlik sonrası rapor",
     ],
     price: "₺200/petek",
-    index: 4,
+    index: 10,
   },
   {
     icon: Bath,
@@ -93,7 +195,7 @@ const services = [
       "Anahtar teslim proje yönetimi",
     ],
     price: "₺15.000'den itibaren",
-    index: 5,
+    index: 11,
   },
   {
     icon: Clock,
@@ -108,7 +210,7 @@ const services = [
       "Geçici ve kalıcı çözümler",
     ],
     price: "Duruma göre değişir",
-    index: 6,
+    index: 12,
   },
 ];
 
@@ -253,6 +355,9 @@ export default function HizmetlerimizPage() {
           </div>
         </div>
       </section>
+
+      {/* REFERENCES SECTION */}
+      <ReferencesSection />
 
       {/* CTA BANNER */}
       <CTABanner />

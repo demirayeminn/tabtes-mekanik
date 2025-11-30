@@ -1,5 +1,14 @@
 // Base prices for services
 export const basePrices = {
+  // New services
+  "yangin-sprink": 15000,
+  "kazan-dairesi": 10000,
+  "kaskat-sistemler": 25000,
+  "daire-tesisati": 3000,
+  "isitma-sogutma": 5000,
+  "ciller-gruplama": 30000,
+
+  // Existing services
   "kombi-montaj": 3500,
   "kombi-bakim": 500,
   "su-tesisati": 2000,
@@ -44,8 +53,9 @@ export function calculatePriceRange(
 
   // Apply urgency multiplier
   const urgencyMultiplier = details.aciliyet
-    ? multipliers.urgency[details.aciliyet as keyof typeof multipliers.urgency] ||
-      1
+    ? multipliers.urgency[
+        details.aciliyet as keyof typeof multipliers.urgency
+      ] || 1
     : 1;
 
   const calculatedPrice = basePrice * buildingMultiplier * urgencyMultiplier;

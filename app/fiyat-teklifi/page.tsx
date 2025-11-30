@@ -4,6 +4,12 @@ import { useState } from "react";
 import Link from "next/link";
 import PageHeader from "@/components/sections/PageHeader";
 import {
+  Shield,
+  Warehouse,
+  Building,
+  Home,
+  Wind,
+  Snowflake,
   Flame,
   Droplets,
   Search,
@@ -18,6 +24,12 @@ import {
 import { calculatePriceRange } from "@/lib/pricing";
 
 type ServiceType =
+  | "yangin-sprink"
+  | "kazan-dairesi"
+  | "kaskat-sistemler"
+  | "daire-tesisati"
+  | "isitma-sogutma"
+  | "ciller-gruplama"
   | "kombi-montaj"
   | "kombi-bakim"
   | "su-tesisati"
@@ -28,6 +40,44 @@ type ServiceType =
   | "diger";
 
 const services = [
+  // YENİ HİZMETLER (KARTVIZITTEKI SIRA - ÜSTTE)
+  {
+    id: "yangin-sprink",
+    icon: Shield,
+    title: "Yangın Sprink",
+    description: "Yangın sprinkler sistem montajı ve bakımı",
+  },
+  {
+    id: "kazan-dairesi",
+    icon: Warehouse,
+    title: "Kazan Dairesi",
+    description: "Kazan dairesi kurulumu ve bakımı",
+  },
+  {
+    id: "kaskat-sistemler",
+    icon: Building,
+    title: "Kaskat Sistemler",
+    description: "Kaskat kazan sistemleri",
+  },
+  {
+    id: "daire-tesisati",
+    icon: Home,
+    title: "Daire Tesisatı",
+    description: "Daire su tesisatı kurulumu",
+  },
+  {
+    id: "isitma-sogutma",
+    icon: Wind,
+    title: "Isıtma Soğutma",
+    description: "Isıtma ve soğutma sistemleri",
+  },
+  {
+    id: "ciller-gruplama",
+    icon: Snowflake,
+    title: "Çiller Gruplama",
+    description: "Endüstriyel çiller sistemleri",
+  },
+  // MEVCUT HİZMETLER (ALTTA)
   {
     id: "kombi-montaj",
     icon: Flame,
@@ -93,7 +143,18 @@ export default function FiyatTeklifiPage() {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [formData, setFormData] = useState<Record<string, any>>({
     service: "",
-    // Step 2 - details
+    // Step 2 - details (new services)
+    binaTuru: "",
+    alan: "",
+    sistemTuru: "",
+    yakitTuru: "",
+    birimSayisi: "",
+    mevcutSistem: "",
+    daireBuyuklugu: "",
+    binaYasi: "",
+    cillerTuru: "",
+    kullanimAmaci: "",
+    // Step 2 - details (existing services)
     marka: "",
     kapasite: "",
     binaType: "",
@@ -260,6 +321,344 @@ export default function FiyatTeklifiPage() {
           Detayları belirtin
         </h2>
         <div className="space-y-6 mt-8">
+          {/* Yangın Sprink */}
+          {service === "yangin-sprink" && (
+            <>
+              <div>
+                <label className="block text-sm font-medium text-foreground mb-2">
+                  Bina Türü *
+                </label>
+                <select
+                  name="binaTuru"
+                  value={formData.binaTuru}
+                  onChange={handleChange}
+                  required
+                  className="w-full border border-border rounded-lg p-3 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none"
+                >
+                  <option value="">Bina türü seçin...</option>
+                  <option value="fabrika">Fabrika</option>
+                  <option value="avm">AVM</option>
+                  <option value="otel">Otel</option>
+                  <option value="hastane">Hastane</option>
+                  <option value="rezidans">Rezidans</option>
+                  <option value="diger">Diğer</option>
+                </select>
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-foreground mb-2">
+                  Yaklaşık Alan (m²)
+                </label>
+                <input
+                  type="number"
+                  name="alan"
+                  value={formData.alan}
+                  onChange={handleChange}
+                  placeholder="Örn: 5000"
+                  className="w-full border border-border rounded-lg p-3 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-foreground mb-2">
+                  Sistem Türü
+                </label>
+                <select
+                  name="sistemTuru"
+                  value={formData.sistemTuru}
+                  onChange={handleChange}
+                  className="w-full border border-border rounded-lg p-3 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none"
+                >
+                  <option value="">Sistem türü seçin...</option>
+                  <option value="wet-pipe">Wet Pipe</option>
+                  <option value="dry-pipe">Dry Pipe</option>
+                  <option value="bilmiyorum">Bilmiyorum</option>
+                </select>
+              </div>
+            </>
+          )}
+
+          {/* Kazan Dairesi */}
+          {service === "kazan-dairesi" && (
+            <>
+              <div>
+                <label className="block text-sm font-medium text-foreground mb-2">
+                  Yakıt Türü *
+                </label>
+                <select
+                  name="yakitTuru"
+                  value={formData.yakitTuru}
+                  onChange={handleChange}
+                  required
+                  className="w-full border border-border rounded-lg p-3 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none"
+                >
+                  <option value="">Yakıt türü seçin...</option>
+                  <option value="dogalgaz">Doğalgaz</option>
+                  <option value="fuel-oil">Fuel-oil</option>
+                  <option value="kati-yakit">Katı Yakıt</option>
+                </select>
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-foreground mb-2">
+                  Kapasite *
+                </label>
+                <select
+                  name="kapasite"
+                  value={formData.kapasite}
+                  onChange={handleChange}
+                  required
+                  className="w-full border border-border rounded-lg p-3 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none"
+                >
+                  <option value="">Kapasite seçin...</option>
+                  <option value="50-100">50-100 kW</option>
+                  <option value="100-250">100-250 kW</option>
+                  <option value="250-500">250-500 kW</option>
+                  <option value="500+">500+ kW</option>
+                </select>
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-foreground mb-2">
+                  İş Türü *
+                </label>
+                <select
+                  name="isTuru"
+                  value={formData.isTuru}
+                  onChange={handleChange}
+                  required
+                  className="w-full border border-border rounded-lg p-3 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none"
+                >
+                  <option value="">İş türü seçin...</option>
+                  <option value="yeni-kurulum">Yeni Kurulum</option>
+                  <option value="bakim">Bakım</option>
+                  <option value="modernizasyon">Modernizasyon</option>
+                </select>
+              </div>
+            </>
+          )}
+
+          {/* Kaskat Sistemler */}
+          {service === "kaskat-sistemler" && (
+            <>
+              <div>
+                <label className="block text-sm font-medium text-foreground mb-2">
+                  Bina Türü *
+                </label>
+                <select
+                  name="binaTuru"
+                  value={formData.binaTuru}
+                  onChange={handleChange}
+                  required
+                  className="w-full border border-border rounded-lg p-3 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none"
+                >
+                  <option value="">Bina türü seçin...</option>
+                  <option value="site">Site</option>
+                  <option value="hastane">Hastane</option>
+                  <option value="fabrika">Fabrika</option>
+                  <option value="avm">AVM</option>
+                  <option value="diger">Diğer</option>
+                </select>
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-foreground mb-2">
+                  Yaklaşık Daire/Birim Sayısı
+                </label>
+                <input
+                  type="number"
+                  name="birimSayisi"
+                  value={formData.birimSayisi}
+                  onChange={handleChange}
+                  placeholder="Örn: 100"
+                  className="w-full border border-border rounded-lg p-3 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-foreground mb-2">
+                  Mevcut Sistem
+                </label>
+                <select
+                  name="mevcutSistem"
+                  value={formData.mevcutSistem}
+                  onChange={handleChange}
+                  className="w-full border border-border rounded-lg p-3 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none"
+                >
+                  <option value="">Seçin...</option>
+                  <option value="var">Var</option>
+                  <option value="yok">Yok</option>
+                </select>
+              </div>
+            </>
+          )}
+
+          {/* Daire Tesisatı */}
+          {service === "daire-tesisati" && (
+            <>
+              <div>
+                <label className="block text-sm font-medium text-foreground mb-2">
+                  Daire Büyüklüğü *
+                </label>
+                <select
+                  name="daireBuyuklugu"
+                  value={formData.daireBuyuklugu}
+                  onChange={handleChange}
+                  required
+                  className="w-full border border-border rounded-lg p-3 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none"
+                >
+                  <option value="">Daire büyüklüğü seçin...</option>
+                  <option value="1+1">1+1</option>
+                  <option value="2+1">2+1</option>
+                  <option value="3+1">3+1</option>
+                  <option value="4+1">4+1</option>
+                  <option value="5+1+">5+1 ve üzeri</option>
+                </select>
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-foreground mb-2">
+                  İş Türü *
+                </label>
+                <select
+                  name="isTuru"
+                  value={formData.isTuru}
+                  onChange={handleChange}
+                  required
+                  className="w-full border border-border rounded-lg p-3 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none"
+                >
+                  <option value="">İş türü seçin...</option>
+                  <option value="yeni-tesisat">Yeni Tesisat</option>
+                  <option value="komple-yenileme">Komple Yenileme</option>
+                  <option value="kismi-tamir">Kısmi Tamir</option>
+                </select>
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-foreground mb-2">
+                  Bina Yaşı
+                </label>
+                <select
+                  name="binaYasi"
+                  value={formData.binaYasi}
+                  onChange={handleChange}
+                  className="w-full border border-border rounded-lg p-3 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none"
+                >
+                  <option value="">Bina yaşı seçin...</option>
+                  <option value="0-10">0-10 yıl</option>
+                  <option value="10-20">10-20 yıl</option>
+                  <option value="20-30">20-30 yıl</option>
+                  <option value="30+">30+ yıl</option>
+                </select>
+              </div>
+            </>
+          )}
+
+          {/* Isıtma Soğutma */}
+          {service === "isitma-sogutma" && (
+            <>
+              <div>
+                <label className="block text-sm font-medium text-foreground mb-2">
+                  Sistem Türü *
+                </label>
+                <select
+                  name="sistemTuru"
+                  value={formData.sistemTuru}
+                  onChange={handleChange}
+                  required
+                  className="w-full border border-border rounded-lg p-3 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none"
+                >
+                  <option value="">Sistem türü seçin...</option>
+                  <option value="merkezi-isitma">Merkezi Isıtma</option>
+                  <option value="klima">Klima</option>
+                  <option value="vrf-vrv">VRF/VRV</option>
+                  <option value="yerden-isitma">Yerden Isıtma</option>
+                  <option value="fancoil">Fancoil</option>
+                </select>
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-foreground mb-2">
+                  Alan (m²)
+                </label>
+                <input
+                  type="number"
+                  name="alan"
+                  value={formData.alan}
+                  onChange={handleChange}
+                  placeholder="Örn: 150"
+                  className="w-full border border-border rounded-lg p-3 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-foreground mb-2">
+                  İş Türü *
+                </label>
+                <select
+                  name="isTuru"
+                  value={formData.isTuru}
+                  onChange={handleChange}
+                  required
+                  className="w-full border border-border rounded-lg p-3 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none"
+                >
+                  <option value="">İş türü seçin...</option>
+                  <option value="yeni-kurulum">Yeni Kurulum</option>
+                  <option value="bakim">Bakım</option>
+                  <option value="onarim">Onarım</option>
+                </select>
+              </div>
+            </>
+          )}
+
+          {/* Çiller Gruplama */}
+          {service === "ciller-gruplama" && (
+            <>
+              <div>
+                <label className="block text-sm font-medium text-foreground mb-2">
+                  Çiller Türü *
+                </label>
+                <select
+                  name="cillerTuru"
+                  value={formData.cillerTuru}
+                  onChange={handleChange}
+                  required
+                  className="w-full border border-border rounded-lg p-3 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none"
+                >
+                  <option value="">Çiller türü seçin...</option>
+                  <option value="su-sogutmali">Su Soğutmalı</option>
+                  <option value="hava-sogutmali">Hava Soğutmalı</option>
+                  <option value="bilmiyorum">Bilmiyorum</option>
+                </select>
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-foreground mb-2">
+                  Kapasite İhtiyacı *
+                </label>
+                <select
+                  name="kapasite"
+                  value={formData.kapasite}
+                  onChange={handleChange}
+                  required
+                  className="w-full border border-border rounded-lg p-3 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none"
+                >
+                  <option value="">Kapasite seçin...</option>
+                  <option value="50-100">50-100 kW</option>
+                  <option value="100-250">100-250 kW</option>
+                  <option value="250-500">250-500 kW</option>
+                  <option value="500+">500+ kW</option>
+                </select>
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-foreground mb-2">
+                  Kullanım Amacı *
+                </label>
+                <select
+                  name="kullanimAmaci"
+                  value={formData.kullanimAmaci}
+                  onChange={handleChange}
+                  required
+                  className="w-full border border-border rounded-lg p-3 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none"
+                >
+                  <option value="">Kullanım amacı seçin...</option>
+                  <option value="proses-sogutma">Proses Soğutma</option>
+                  <option value="konfor-sogutma">Konfor Soğutma</option>
+                  <option value="her-ikisi">Her İkisi</option>
+                </select>
+              </div>
+            </>
+          )}
+
           {/* Kombi Montajı/Bakımı */}
           {(service === "kombi-montaj" || service === "kombi-bakim") && (
             <>

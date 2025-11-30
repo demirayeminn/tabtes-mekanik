@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { MapPin, Phone, Mail, Clock, Facebook, Instagram } from "lucide-react";
+import { siteContent } from "@/data/site-content";
 
 export default function Footer() {
   const quickLinks = [
@@ -8,17 +9,18 @@ export default function Footer() {
     { href: "/hakkimizda", label: "Hakkımızda" },
     { href: "/hizmetlerimiz", label: "Hizmetlerimiz" },
     { href: "/urunler", label: "Ürünlerimiz" },
+    { href: "/blog", label: "Blog" },
     { href: "/fiyat-teklifi", label: "Fiyat Teklifi" },
     { href: "/iletisim", label: "İletişim" },
   ];
 
   const services = [
-    { href: "/hizmetler/kombi-servisi", label: "Kombi Servisi" },
-    { href: "/hizmetler/su-tesisati", label: "Su Tesisatı" },
-    { href: "/hizmetler/kacak-tespiti", label: "Kaçak Tespiti" },
-    { href: "/hizmetler/petek-temizleme", label: "Petek Temizleme" },
-    { href: "/hizmetler/banyo-tadilat", label: "Banyo Tadilatı" },
-    { href: "/hizmetler/acil-servis", label: "Acil Servis" },
+    { href: "/hizmetlerimiz/yangin-sprink", label: "Yangın Sprink Sistemleri" },
+    { href: "/hizmetlerimiz/kazan-dairesi", label: "Kazan Dairesi" },
+    { href: "/hizmetlerimiz/kaskat-sistemler", label: "Kaskat Sistemler" },
+    { href: "/hizmetlerimiz/daire-tesisati", label: "Daire Tesisatı" },
+    { href: "/hizmetlerimiz/isitma-sogutma", label: "Isıtma & Soğutma" },
+    { href: "/hizmetlerimiz/ciller-gruplama", label: "Çiller Gruplama" },
   ];
 
   return (
@@ -100,29 +102,31 @@ export default function Footer() {
             <ul className="space-y-4">
               <li className="flex items-center gap-3 text-white/80">
                 <MapPin className="w-5 h-5 text-white/60 flex-shrink-0" />
-                <span>Çerkezköy, Tekirdağ</span>
+                <span>{siteContent.contact.address}</span>
               </li>
               <li>
                 <a
-                  href="tel:+905370102412"
+                  href={`tel:+90${siteContent.contact.whatsapp}`}
                   className="flex items-center gap-3 text-white/80 hover:text-white transition-colors"
                 >
                   <Phone className="w-5 h-5 text-white/60 flex-shrink-0" />
-                  <span>0537 010 24 12</span>
+                  <span>{siteContent.contact.phone}</span>
                 </a>
               </li>
               <li>
                 <a
-                  href="mailto:tabtesmekanik@gmail.com"
+                  href={`mailto:${siteContent.contact.email}`}
                   className="flex items-center gap-3 text-white/80 hover:text-white transition-colors"
                 >
                   <Mail className="w-5 h-5 text-white/60 flex-shrink-0" />
-                  <span>tabtesmekanik@gmail.com</span>
+                  <span>{siteContent.contact.email}</span>
                 </a>
               </li>
               <li className="flex items-center gap-3 text-white/80">
                 <Clock className="w-5 h-5 text-white/60 flex-shrink-0" />
-                <span>Pzt-Cmt: 08:00-20:00</span>
+                <span>
+                  Pzt-Cmt: {siteContent.contact.workingHours.weekday}
+                </span>
               </li>
             </ul>
           </div>

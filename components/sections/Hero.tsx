@@ -2,10 +2,11 @@
 
 import Link from "next/link";
 import { Phone, CheckCircle } from "lucide-react";
+import { siteContent } from "@/data/site-content";
 
 export default function Hero() {
-  const phoneNumber = "0537 010 24 12";
-  const phoneLink = "tel:+905370102412";
+  const phoneNumber = siteContent.contact.phone;
+  const phoneLink = `tel:+90${siteContent.contact.whatsapp}`;
 
   return (
     <section className="w-full min-h-[600px] lg:min-h-[700px] bg-gradient-to-br from-[#004494] via-[#0066CC] to-[#0066CC] relative">

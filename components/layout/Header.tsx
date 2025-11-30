@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Phone, Menu, X } from "lucide-react";
+import { siteContent } from "@/data/site-content";
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -35,14 +36,14 @@ export default function Header() {
     { href: "/iletisim", label: "İletişim" },
   ];
 
-  const phoneNumber = "0537 010 24 12";
+  const phoneNumber = siteContent.contact.phone;
 
   return (
     <>
       {/* TOP BAR */}
       <div className="w-full h-10 bg-brand flex items-center justify-center">
         <a
-          href="tel:+905370102412"
+          href={`tel:+90${siteContent.contact.whatsapp}`}
           className="flex items-center text-white text-sm font-medium hover:opacity-90 transition-opacity"
         >
           <Phone className="w-4 h-4 mr-2" />
@@ -80,13 +81,21 @@ export default function Header() {
                 {link.label}
               </Link>
             ))}
+            {/* Blog after İletişim */}
+            <span className="text-foreground-muted">|</span>
+            <Link
+              href="/blog"
+              className="text-foreground hover:text-primary font-medium transition-colors"
+            >
+              Blog
+            </Link>
           </div>
 
           {/* RIGHT - Actions */}
           <div className="flex items-center gap-4">
             {/* Phone display (hidden on mobile, show on md) */}
             <a
-              href="tel:+905370102412"
+              href={`tel:+90${siteContent.contact.whatsapp}`}
               className="hidden md:flex items-center gap-2 text-foreground-muted text-sm hover:text-primary transition-colors"
             >
               <Phone className="w-4 h-4" />
@@ -153,19 +162,27 @@ export default function Header() {
                   {link.label}
                 </Link>
               ))}
+              {/* Blog in mobile menu */}
+              <Link
+                href="/blog"
+                onClick={closeMenu}
+                className="text-foreground text-xl py-4 font-medium hover:text-primary transition-colors border-b border-border"
+              >
+                Blog
+              </Link>
             </div>
 
             {/* Bottom - Phone + CTA Button */}
             <div className="p-4 border-t border-border space-y-4">
               <a
-                href="tel:+905370102412"
+                href={`tel:+90${siteContent.contact.whatsapp}`}
                 className="flex items-center gap-2 text-foreground-muted hover:text-primary transition-colors"
               >
                 <Phone className="w-5 h-5" />
                 <span className="text-lg">{phoneNumber}</span>
               </a>
               <Link
-                href="tel:+905370102412"
+                href={`tel:+90${siteContent.contact.whatsapp}`}
                 onClick={closeMenu}
                 className="w-full bg-accent hover:bg-accent-hover text-white px-6 py-3 rounded-full font-semibold transition-colors flex items-center justify-center gap-2"
               >
